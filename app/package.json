@@ -1,0 +1,25 @@
+{
+  "name": "nlb-cluster-monitor",
+  "version": "1.0.0",
+  "description": "NLB Cluster Monitor and Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otakuex/NLBClusterMonitor.git"
+  },
+  "keywords": [
+    "nlb"
+  ],
+  "author": "Robert Reidy, Ravi Nath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/otakuex/NLBClusterMonitor/issues"
+  },
+  "homepage": "https://github.com/otakuex/NLBClusterMonitor#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
