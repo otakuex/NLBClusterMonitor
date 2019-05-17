@@ -1,8 +1,13 @@
+let fs = require('fs')
+
 let express = require('express')
 let app = express()
 
-app.get('/', function(req, resp) {
-  resp.send('hello world')
+app.use('/', express.static('public'))
+
+app.get('/data', function(req, resp){
+    let data = fs.readFileSync('dev_data/dummy.json')
+    resp.send(data)
 })
 
 app.listen(9001, function() {
