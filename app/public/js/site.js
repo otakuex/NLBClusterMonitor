@@ -1,39 +1,96 @@
 $(function() {
     $.getJSON('/data', function(resp){
-        buildTable(resp);
+        setTimeout(function() {
+            setUpChart(resp);
+            buildTable(resp);
+        }, 2000);
     });
 
 
 
     function buildTable(data){
-        var tableDefinition = '<table><tr><th>Server Name</th><th>Expected Nodes</th><th>Nodes Converged</th><th>Difference</th><th>Status</th></tr>';
+        var rowsDefinition = '';
         $.each(data["servers"], function(idx, item){
-            var isOk = item['expectedNodes'] == item['convergedNodes'];
-            var className = 'expected';
-            var status = 'OK';
-            if (!isOk) {
-                className = 'difference';
-                status = 'Different';
-            }
-            message = ''
-            var difference = item['convergedNodes'] - item['expectedNodes'];
-            if (difference > 0) {
-                message = difference + ' node(s) extra';
+            var isOk = item['difference'] == 0;
+            var className = isOk ? 'status--process' : 'status--denied';
+            var status = isOk? 'OK' : 'Different';
+            message = item['difference_desc']
+            if (item['difference'] != 0) {
+                message = item['difference'] + ' node(s) ' + item['difference_desc'];
             } 
-            else if (difference < 0 ){
-                message = Math.abs(difference) + ' node(s) missing';
-            }
-            else {
-                // its 0
-                message = 'SAME';
-            }
-            tableDefinition += '<tr class="'+className+'"><td>'+item['name']+'</td>';
-            tableDefinition += '<td>'+item['expectedNodes']+'</td>'
-            tableDefinition += '<td>'+item['convergedNodes']+'</td>'
-            tableDefinition += '<td>'+message+'</td>';
-            tableDefinition += '<td>'+status+'</td></tr>';
+            rowsDefinition += '<tr><td>'+item['name']+'</td>';
+            rowsDefinition += '<td class="text-right">'+item['expectedNodes']+'</td>'
+            rowsDefinition += '<td class="text-right">'+item['convergedNodes']+'</td>'
+            rowsDefinition += '<td>'+message+'</td>';
+            rowsDefinition += '<td><span class="'+className+'">'+status+'</span></td></tr>';
         });
-        tableDefinition += '</table>';
-        $('body').append(tableDefinition);
+        $('#cluster_status tbody').html(rowsDefinition);
+    }
+
+
+    function setUpChart(data) {
+        var ok = 0;
+        var errored = 0;
+        $.each(data["servers"], function(idx, item){
+            if (item['difference'] == 0) {
+                ok++;
+            }else {
+                errored++;
+            }
+        })
+
+        var ctx = document.getElementById("percent-chart1");
+    if (ctx) {
+      ctx.height = 200;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [
+            {
+              label: "Overall Status",
+              data: [ok, errored],
+              backgroundColor: [
+                '#28a745',
+                '#fa4251'
+              ],
+              hoverBackgroundColor: [
+                '#28a745',
+                '#fa4251'
+              ],
+              borderWidth: [
+                0, 0
+              ],
+              hoverBorderColor: [
+                'transparent',
+                'transparent'
+              ]
+            }
+          ],
+          labels: [
+            'OK',
+            'Errored'
+          ]
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          cutoutPercentage: 70,
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          },
+          legend: {
+            display: true
+          },
+          tooltips: {
+            titleFontFamily: "Poppins",
+            xPadding: 15,
+            yPadding: 10,
+            caretPadding: 0,
+            bodyFontSize: 16
+          }
+        }
+      });
+    }
     }
 });
