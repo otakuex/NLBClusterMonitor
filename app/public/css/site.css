@@ -1,15 +1,3 @@
-body {
-    background: #999999;
-}
-
-th, td{
-    border: 1px solid #ffffff;
-}
-
-tr.expected {
-    background: #aaffaa;
-}
-
-tr.difference {
-    background: #ffaaaa;
+.padding-top-content {
+    padding-top: 25px;
 }
