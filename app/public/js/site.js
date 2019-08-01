@@ -38,14 +38,14 @@ $(function() {
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [6, 2],
               backgroundColor: [
-                '#28a745',
-                '#fa4251'
+                '#08aa83',
+                '#f54652'
               ],
               hoverBackgroundColor: [
-                '#28a745',
-                '#fa4251'
+                '#08aa83',
+                '#f54652'
               ],
               borderWidth: [
                 0, 0
@@ -64,7 +64,7 @@ $(function() {
         options: {
           maintainAspectRatio: false,
           responsive: true,
-          cutoutPercentage: 55,
+          cutoutPercentage: 60,
           animation: {
             animateScale: true,
             animateRotate: true
