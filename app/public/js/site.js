@@ -29,33 +29,23 @@ $(function() {
 
 
     function setUpChart(data) {
-        var ok = 0;
-        var errored = 0;
-        $.each(data["servers"], function(idx, item){
-            if (item['difference'] == 0) {
-                ok++;
-            }else {
-                errored++;
-            }
-        })
-
         var ctx = document.getElementById("percent-chart1");
     if (ctx) {
-      ctx.height = 200;
+      ctx.height = 280;
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           datasets: [
             {
-              label: "Overall Status",
-              data: [ok, errored],
+              label: "My First dataset",
+              data: [6, 2],
               backgroundColor: [
-                '#28a745',
-                '#fa4251'
+                '#08aa83',
+                '#f54652'
               ],
               hoverBackgroundColor: [
-                '#28a745',
-                '#fa4251'
+                '#08aa83',
+                '#f54652'
               ],
               borderWidth: [
                 0, 0
@@ -74,7 +64,7 @@ $(function() {
         options: {
           maintainAspectRatio: false,
           responsive: true,
-          cutoutPercentage: 70,
+          cutoutPercentage: 60,
           animation: {
             animateScale: true,
             animateRotate: true

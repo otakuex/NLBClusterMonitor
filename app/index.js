@@ -11,5 +11,5 @@ app.get('/data', function(req, resp){
 })
 
 app.listen(9001, function() {
-    console.log('Hey we\'re running')
+    console.log('Hey we\'re running - go to localhost:9001 - Press Ctrl+C to end instance')
 })

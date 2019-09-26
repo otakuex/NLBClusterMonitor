@@ -375,14 +375,6 @@
           legend: {
             display: false
           },
-          elements:{
-            center:{
-              text: '1',//(errored > 0 ? errored +' Errored' : 'OK'),
-              color: '#FF6384', // Default is #000000
-          fontStyle: 'Arial', // Default is Arial
-          sidePadding: 20 // Defualt is 20 (as a percentage)
-            }
-          },
           tooltips: {
             titleFontFamily: "Poppins",
             xPadding: 15,

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/otakuex/NLBClusterMonitor#readme",
   "dependencies": {
+    "app": "^0.1.0",
     "express": "^4.16.4"
   }
 }
