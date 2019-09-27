@@ -1,5 +1,5 @@
 $(function() {
-    $.getJSON('/data', function(resp){
+    $.getJSON('/mongo', function(resp){
         setTimeout(function() {
             setUpChart(resp);
             buildTable(resp);

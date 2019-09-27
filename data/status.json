@@ -1,0 +1,11 @@
+{ 
+    "_id" : ObjectId("5d8d60315dfd2f2c6ddec627"), 
+    "convergedNodes" : 4.0, 
+    "timestamp" : "2013-03-01T00:00:00Z", 
+    "difference" : 0.0, 
+    "difference_desc" : "SAME", 
+    "cluster_id" : DBRef("clusters", ObjectId("5d8d69875dfd2f2c6ddec69d")), 
+    "cluster" : "5d8d5f2d5dfd2f2c6ddec620", 
+    "name" : "FTLACTRL001", 
+    "expectedNodes" : 4.0
+}
